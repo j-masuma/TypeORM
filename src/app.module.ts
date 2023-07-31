@@ -3,16 +3,23 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
+import { DriversModule } from './drivers/drivers.module';
+import { DriversModule } from './drivers/drivers.module';
 //TypeOrmModule.forRoot({})
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db.sqlite',
-      entities: ['dist/**/*.entity.js'],
+      type: 'postgres',
+      host: 'localhost',
+      port: 3600,
+      username: 'postgres',
+      password: '1234',
+      database: 'fleetdb',
+      entities: ['dist/**/*.entity.{js,ts}'],
       synchronize: true,
     }),
     UsersModule,
+    DriversModule,
   ],
   controllers: [AppController],
   providers: [AppService],
