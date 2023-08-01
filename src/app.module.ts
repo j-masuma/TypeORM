@@ -4,8 +4,6 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { DriversModule } from './drivers/drivers.module';
-import { DriversModule } from './drivers/drivers.module';
-//TypeOrmModule.forRoot({})
 @Module({
   imports: [
     TypeOrmModule.forRoot({

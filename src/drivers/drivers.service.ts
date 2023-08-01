@@ -1,26 +1,45 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDriverDto } from './dto/create-driver.dto';
 import { UpdateDriverDto } from './dto/update-driver.dto';
+import { Driver } from './entities/driver.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class DriversService {
-  create(createDriverDto: CreateDriverDto) {
-    return 'This action adds a new driver';
+  constructor(
+    @InjectRepository(Driver) private usersRepository: Repository<Driver>,
+  ) {}
+  create(CreateDriverDto: CreateDriverDto) {
+    const newDriver = this.usersRepository.create(CreateDriverDto);
+    return this.usersRepository.save(newDriver);
   }
 
   findAll() {
-    return `This action returns all drivers`;
+    return this.usersRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} driver`;
+    return this.usersRepository.findOneBy({ id });
   }
 
-  update(id: number, updateDriverDto: UpdateDriverDto) {
-    return `This action updates a #${id} driver`;
+  async update(id: number, updateDriverDto: UpdateDriverDto) {
+    const driver = await this.findOne(id);
+
+    return this.usersRepository.save({ ...driver, ...updateDriverDto });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} driver`;
+  async remove(id: number) {
+    const driver = await this.findOne(id);
+    return this.usersRepository.remove(driver);
   }
 }
+// function InjectRepository(
+//   Driver: typeof Driver,
+// ): (
+//   target: typeof DriversService,
+//   propertyKey: undefined,
+//   parameterIndex: 0,
+// ) => void {
+//   throw new Error('Function not implemented.');
+// }

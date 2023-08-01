@@ -1,1 +1,7 @@
-export class CreateDriverDto {}
+export class CreateDriverDto {
+  name: string;
+
+  cnic: number;
+
+  experience: number;
+}
