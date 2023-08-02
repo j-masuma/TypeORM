@@ -1,13 +1,16 @@
-import { IsString, IsNumber, Min, Max } from 'class-validator';
+import { IsString, IsNumber, Length } from 'class-validator';
 
 export class CreateDriverDto {
   @IsString()
   name: string;
 
-  @IsNumber()
-  @Min(13)
-  @Max(13)
-  cnic: number;
+  @IsString()
+  @Length(11)
+  contact: string;
+
+  @IsString()
+  @Length(15)
+  cnic: string;
 
   @IsNumber()
   experience: number;

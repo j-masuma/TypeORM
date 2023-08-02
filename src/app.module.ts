@@ -13,7 +13,7 @@ import { DriversModule } from './drivers/drivers.module';
       port: 3600,
       username: 'postgres',
       password: '1234',
-      database: 'fleetdb',
+      database: 'fleetdatabase',
       entities: ['dist/**/*.entity.{js,ts}'],
       synchronize: true,
     }),

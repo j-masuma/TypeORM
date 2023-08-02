@@ -10,8 +10,13 @@ export class DriversService {
   constructor(
     @InjectRepository(Driver) private usersRepository: Repository<Driver>,
   ) {}
-  create(CreateDriverDto: CreateDriverDto) {
-    const newDriver = this.usersRepository.create(CreateDriverDto);
+  create(createDriverDto: CreateDriverDto) {
+    const driver = new Driver();
+    driver.name = createDriverDto.name;
+    driver.contact = createDriverDto.contact;
+    driver.cnic = createDriverDto.cnic;
+    driver.experience = createDriverDto.experience;
+    const newDriver = this.usersRepository.create(driver);
     return this.usersRepository.save(newDriver);
   }
 
