@@ -16,7 +16,9 @@ export class DriversController {
   constructor(private readonly driversService: DriversService) {}
 
   @Post()
-  create(@Body() createDriverDto: CreateDriverDto) {
+  async create(@Body() createDriverDto: CreateDriverDto) {
+    // The incoming data will be validated against the CreateDriverDto rules.
+    // If there are validation errors, an exception will be thrown automatically.
     return this.driversService.create(createDriverDto);
   }
 
@@ -31,10 +33,15 @@ export class DriversController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDriverDto: UpdateDriverDto) {
+  async update(
+    @Param('id') id: string,
+    @Body()
+    updateDriverDto: UpdateDriverDto,
+  ) {
+    // The incoming data will be validated against the UpdateDriverDto rules.
+    // If there are validation errors, an exception will be thrown automatically.
     return this.driversService.update(+id, updateDriverDto);
   }
-
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.driversService.remove(+id);

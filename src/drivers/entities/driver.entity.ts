@@ -8,7 +8,6 @@ export class Driver {
   @Column()
   name: string;
 
-  @Column()
   cnic: number;
 
   @Column()

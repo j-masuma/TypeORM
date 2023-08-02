@@ -34,12 +34,3 @@ export class DriversService {
     return this.usersRepository.remove(driver);
   }
 }
-// function InjectRepository(
-//   Driver: typeof Driver,
-// ): (
-//   target: typeof DriversService,
-//   propertyKey: undefined,
-//   parameterIndex: 0,
-// ) => void {
-//   throw new Error('Function not implemented.');
-// }
